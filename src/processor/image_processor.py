@@ -1,14 +1,11 @@
 """
-This module handles image and GIF processing for the ISLify application.
+Optimized Python file for image and GIF processing in the ISLify application.
 """
 
-import numpy as np
-import matplotlib.pyplot as plt
-from PIL import Image, ImageTk
 import tkinter as tk
+from PIL import Image, ImageTk
 from itertools import count
 import string
-
 
 class ImageLabel(tk.Label):
     """
@@ -34,10 +31,7 @@ class ImageLabel(tk.Label):
         except EOFError:
             pass
 
-        try:
-            self.delay = im.info["duration"]
-        except:
-            self.delay = 100
+        self.delay = im.info.get("duration", 100)
 
         if len(self.frames) == 1:
             self.config(image=self.frames[0])
@@ -52,11 +46,25 @@ class ImageLabel(tk.Label):
     def next_frame(self):
         """Display the next frame of an animated GIF."""
         if self.frames:
-            self.loc += 1
-            self.loc %= len(self.frames)
+            self.loc = (self.loc + 1) % len(self.frames)
             self.config(image=self.frames[self.loc])
             self.after(self.delay, self.next_frame)
 
+def center_window(root):
+    """
+    Center the Tkinter window on the screen.
+
+    Args:
+        root: The Tkinter root window.
+    """
+    root.update_idletasks()
+    window_width = root.winfo_width()
+    window_height = root.winfo_height()
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
+    position_right = int(screen_width / 2 - window_width / 2)
+    position_down = int(screen_height / 2 - window_height / 2)
+    root.geometry(f"{window_width}x{window_height}+{position_right}+{position_down}")
 
 def display_isl_gif(phrase):
     """
@@ -72,24 +80,11 @@ def display_isl_gif(phrase):
     lbl.pack()
     lbl.load(f"resources/isl_gifs/{phrase.lower()}.gif")
 
-    # Update the window to get the correct size
-    root.update_idletasks()
-    window_width = root.winfo_width()
-    window_height = root.winfo_height()
-    screen_width = root.winfo_screenwidth()
-    screen_height = root.winfo_screenheight()
-
-    position_right = int(screen_width / 2 - window_width / 2)
-    position_down = int(screen_height / 2 - window_height / 2)
-
-    # Position the window in the center of the screen
-    root.geometry(f"{window_width}x{window_height}+{position_right}+{position_down}")
+    center_window(root)
 
     # Close the window after 5 seconds
     root.after(5000, root.destroy)
-
     root.mainloop()
-
 
 def display_alphabet_images(text):
     """
@@ -98,7 +93,7 @@ def display_alphabet_images(text):
     Args:
         text: The text to display as ISL alphabet images.
     """
-    alphabet_list = list(string.ascii_lowercase)
+    alphabet_list = set(string.ascii_lowercase)  # Use a set for faster lookup
 
     root = tk.Tk()
     root.title("ISL Alphabet Images")
@@ -111,30 +106,16 @@ def display_alphabet_images(text):
             char = text[index].lower()
             if char in alphabet_list:
                 image_path = f"resources/letters/{char}.jpg"
-                image = Image.open(image_path)
+                try:
+                    image = Image.open(image_path).resize((500, 500))
+                    photo = ImageTk.PhotoImage(image)
+                    lbl.config(image=photo)
+                    lbl.image = photo
+                    center_window(root)
+                except FileNotFoundError:
+                    print(f"Image for character '{char}' not found.")
 
-                # Resize the image to a more manageable size
-                image = image.resize((500, 500))
-
-                photo = ImageTk.PhotoImage(image)
-                lbl.config(image=photo)
-                lbl.image = photo
-                root.update_idletasks()
-
-                # Center the window
-                window_width = root.winfo_width()
-                window_height = root.winfo_height()
-                screen_width = root.winfo_screenwidth()
-                screen_height = root.winfo_screenheight()
-                position_right = int(screen_width / 2 - window_width / 2)
-                position_down = int(screen_height / 2 - window_height / 2)
-                root.geometry(
-                    f"{window_width}x{window_height}+{position_right}+{position_down}"
-                )
-
-                root.after(800, show_image, index + 1)
-            else:
-                root.after(800, show_image, index + 1)
+            root.after(800, show_image, index + 1)
         else:
             root.after(800, root.destroy)
 
