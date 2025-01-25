@@ -1,0 +1,4 @@
+easygui
+speech_recognition
+pillow
+numpy
