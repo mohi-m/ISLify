@@ -3,7 +3,7 @@ This module handles speech recognition functionality for the ISLify application.
 """
 
 import speech_recognition as sr
-from image_processor import display_isl_gif, display_alphabet_images
+from .image_processor import display_isl_gif, display_alphabet_images
 from utils import load_supported_phrases
 
 class SpeechRecognizer:
@@ -35,14 +35,14 @@ class SpeechRecognizer:
                 print("You Said: " + rec_audio)
 
                 if rec_audio in ["goodbye", "good bye", "bye"]:
-                    print("Time to say goodbye!")
+                    print("Goodbye, see you next time!")
                     break
                 elif rec_audio in self.supported_phrases:
                     display_isl_gif(rec_audio)
                 else:
                     display_alphabet_images(rec_audio)
             except sr.UnknownValueError:
-                print("Google Recognition could not understand audio")
+                print("Google Recognition could not understand audio. Please repeat.")
             except sr.RequestError as e:
                 print(f"Could not request results from Google Recognition service; {e}")
             except Exception as e:

@@ -14,9 +14,9 @@ def create_main_gui(speech_processor):
     """
     with sr.Microphone() as source:
         while True:
-            image = "signlang.png"
+            image = "resources/signlang.png"
             msg = "HEARING IMPAIRMENT ASSISTANT"
-            choices = ["Live Voice", "All Done!"]
+            choices = ["Live Voice", "Close"]
             reply = buttonbox(msg, image=image, choices=choices)
             if reply == choices[0]:
                 speech_processor(source)

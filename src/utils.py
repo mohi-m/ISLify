@@ -12,7 +12,7 @@ def load_supported_phrases():
     Returns:
         A list of supported phrases.
     """
-    with open("supported_phrases.json", "r") as file:
+    with open("resources/supported_phrases.json", "r") as file:
         data = json.load(file)
         return data["phrases"]
 

@@ -9,6 +9,7 @@ import tkinter as tk
 from itertools import count
 import string
 
+
 class ImageLabel(tk.Label):
     """
     A custom Tkinter Label for displaying images and animated GIFs.
@@ -56,6 +57,7 @@ class ImageLabel(tk.Label):
             self.config(image=self.frames[self.loc])
             self.after(self.delay, self.next_frame)
 
+
 def display_isl_gif(phrase):
     """
     Display an ISL gesture GIF for a given phrase.
@@ -64,14 +66,30 @@ def display_isl_gif(phrase):
         phrase: The phrase to display as an ISL gesture.
     """
     root = tk.Tk()
+    root.title("ISL Gesture")
+
     lbl = ImageLabel(root)
     lbl.pack()
-    lbl.load(f"ISL_Gifs/{phrase.lower()}.gif")
-    
+    lbl.load(f"resources/isl_gifs/{phrase.lower()}.gif")
+
+    # Update the window to get the correct size
+    root.update_idletasks()
+    window_width = root.winfo_width()
+    window_height = root.winfo_height()
+    screen_width = root.winfo_screenwidth()
+    screen_height = root.winfo_screenheight()
+
+    position_right = int(screen_width / 2 - window_width / 2)
+    position_down = int(screen_height / 2 - window_height / 2)
+
+    # Position the window in the center of the screen
+    root.geometry(f"{window_width}x{window_height}+{position_right}+{position_down}")
+
     # Close the window after 5 seconds
     root.after(5000, root.destroy)
-    
+
     root.mainloop()
+
 
 def display_alphabet_images(text):
     """
@@ -81,12 +99,44 @@ def display_alphabet_images(text):
         text: The text to display as ISL alphabet images.
     """
     alphabet_list = list(string.ascii_lowercase)
-    for char in text:
-        if char in alphabet_list:
-            image_path = f"letters/{char}.jpg"
-            image = Image.open(image_path)
-            image_array = np.asarray(image)
-            plt.imshow(image_array)
-            plt.draw()
-            plt.pause(0.8)
-    plt.close()
+
+    root = tk.Tk()
+    root.title("ISL Alphabet Images")
+
+    lbl = tk.Label(root)
+    lbl.pack()
+
+    def show_image(index):
+        if index < len(text):
+            char = text[index].lower()
+            if char in alphabet_list:
+                image_path = f"resources/letters/{char}.jpg"
+                image = Image.open(image_path)
+
+                # Resize the image to a more manageable size
+                image = image.resize((500, 500))
+
+                photo = ImageTk.PhotoImage(image)
+                lbl.config(image=photo)
+                lbl.image = photo
+                root.update_idletasks()
+
+                # Center the window
+                window_width = root.winfo_width()
+                window_height = root.winfo_height()
+                screen_width = root.winfo_screenwidth()
+                screen_height = root.winfo_screenheight()
+                position_right = int(screen_width / 2 - window_width / 2)
+                position_down = int(screen_height / 2 - window_height / 2)
+                root.geometry(
+                    f"{window_width}x{window_height}+{position_right}+{position_down}"
+                )
+
+                root.after(800, show_image, index + 1)
+            else:
+                root.after(800, show_image, index + 1)
+        else:
+            root.after(800, root.destroy)
+
+    show_image(0)
+    root.mainloop()
