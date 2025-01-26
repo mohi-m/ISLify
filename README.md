@@ -9,7 +9,7 @@ It bridges the communication gap between spoken language and Indian Sign Languag
 - User-friendly graphical interface
 
 ## Demo
-[Download the video](video.mp4)
+[Download the video](demo/SignBridge.mp4)
 
 
 ## Project Structure
