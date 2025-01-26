@@ -1,77 +1,120 @@
 # SignBridge
 
-**SignBridge is an application that serves as an Indian Sign Language (ISL) and American Sign Language (ASL) Interpreter Assistant.
-It bridges the communication gap between spoken language and Indian Sign Language by converting speech to ISL gestures and alphabets.**
+[![Python](https://img.shields.io/badge/Python-3.x-blue.svg)](https://www.python.org/) [![Contributions Welcome](https://img.shields.io/badge/Contributions-Welcome-brightgreen.svg)](https://github.com/mohi-m/SignBridge/pulls) [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)  
 
-## Features
+**SignBridge** bridges the communication gap between spoken language and Indian Sign Language (ISL) or American Sign Language (ASL) by converting speech to ISL gestures and alphabets. It’s designed to be a powerful assistant for ISL and ASL interpretation.
 
-- Real-time speech recognition
-- Conversion of recognized speech to ISL/ASL gestures (GIFs)
-- Display of alphabet images sign for unrecognized words
-- User-friendly graphical interface
+## 🌟 **Features**
 
-## Demo
+- **Real-time speech recognition:** Translates spoken language on the fly.
+- **Speech-to-gesture conversion:** Converts recognized speech to ISL/ASL gestures (GIFs).
+- **Fallback for unrecognized words:** Displays alphabet images for unmatched words.
+- **User-friendly interface:** A simple and intuitive graphical interface for seamless interaction.
 
-- SignBridge > demo > [SignBridge.mp4](demo/SignBridge.mp4)
+## 📺 **Demo**
 
-- Watch Demo on [YouTube](https://www.youtube.com/watch?v=FtxN6E09L_Y)
+- **Local Demo:**  
+  Navigate to `SignBridge/demo/` and open [SignBridge.mp4](demo/SignBridge.mp4).
 
-## Project Structure
+- **YouTube Demo:**  
+  [Watch on YouTube](https://www.youtube.com/watch?v=FtxN6E09L_Y)
 
-```text
+## 🗂 **Project Structure**
+
+```plaintext
 SignBridge/
 ├── resources/
-│   ├── isl_gifs/
-│   │   └── [ISL gesture GIF files]
-│   ├── asl_gifs/
-│   │   └── [ASL gesture GIF files]
-│   ├── letters/
-│   │   └── [Alphabet image files]
-│   ├── signlang.png
+│   ├── isl_gifs/               # ISL gesture GIFs
+│   ├── asl_gifs/               # ASL gesture GIFs
+│   ├── letters/                # Alphabet images
+│   ├── signlang.png            # Logo or banner
 │   ├── supported_isl_phrases.json
 │   └── supported_asl_phrases.json
 │
 ├── src/
 │   ├── interface/
-│   │   └── gui.py
+│   │   └── gui.py              # Graphical interface logic
 │   │
 │   ├── processor/
-│   │   ├── image_processor.py
-│   │   └── speech_processor.py
+│   │   ├── image_processor.py  # Image processing utilities
+│   │   └── speech_processor.py # Speech recognition logic
 │   │
-│   ├── main.py
-│   └── my_utils.py
+│   ├── main.py                 # Entry point for the application
+│   └── my_utils.py             # Utility functions
 │
-└── README.md
-
+├── demo/
+│   └── SignBridge.mp4          # Demo video
+│
+├── requirements.txt            # Dependencies
+└── README.md                   # Project documentation
 ```
 
-## Installation
+## 🛠 **Installation**
 
 1. Clone the repository:
-   `git clone https://github.com/mohi-m/SignBridge.git`
+
+   ```bash
+   git clone https://github.com/mohi-m/SignBridge.git
+   ```
 
 2. Navigate to the project directory:
-   `cd SignBridge`
+
+   ```bash
+   cd SignBridge
+   ```
 
 3. Install the required dependencies:
-   `pip install -r requirements.txt`
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-## Usage
+## 🚀 **Usage**
 
-1. Run the main script to start the application:
-   `python main.py`
+1. Run the application:
 
-2. Follow the on-screen instructions to use the speech recognition feature and view the corresponding ISL/ASL gestures or alphabet images.
+   ```bash
+   python main.py
+   ```
 
-## Dependencies
+2. Follow the on-screen instructions:
+   - Speak into your microphone to activate real-time speech recognition.
+   - View corresponding ISL/ASL gestures or alphabet images for your input.
 
-- speech_recognition
-- numpy
-- easygui
-- Pillow
-- tkinter
+## 📋 **Dependencies**
 
-## Contributing
+Ensure you have the following Python packages installed (automatically installed via `requirements.txt`):
 
-Contributions to SignBridge are welcome! Please feel free to submit a Pull Request.
+- `speech_recognition`
+- `numpy`
+- `easygui`
+- `Pillow`
+- `tkinter`
+
+## 🤝 **Contributing**
+
+Contributions are always welcome! Here's how you can help:
+
+1. Fork the repository.
+2. Create a feature branch:
+   ```bash
+   git checkout -b feature-name
+   ```
+3. Commit your changes:
+   ```bash
+   git commit -m "Add feature-name"
+   ```
+4. Push the branch:
+   ```bash
+   git push origin feature-name
+   ```
+5. Open a Pull Request.
+
+For major changes, please open an issue first to discuss what you'd like to modify.
+
+## 📄 **License**
+
+This project is licensed under the [MIT License](https://opensource.org/licenses/MIT).
+
+## 💬 **Feedback**
+
+If you have any questions, suggestions, or feedback, feel free to open an issue or reach out!
