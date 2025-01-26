@@ -8,6 +8,10 @@ It bridges the communication gap between spoken language and Indian Sign Languag
 - Display of alphabet images sign for unrecognized words
 - User-friendly graphical interface
 
+## Demo
+[Download the video](video.mp4)
+
+
 ## Project Structure
 ```text
 SignBridge/
