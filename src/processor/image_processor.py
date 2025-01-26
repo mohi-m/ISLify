@@ -7,6 +7,7 @@ from PIL import Image, ImageTk
 from itertools import count
 import string
 
+
 class ImageLabel(tk.Label):
     """
     A custom Tkinter Label for displaying images and animated GIFs.
@@ -50,6 +51,7 @@ class ImageLabel(tk.Label):
             self.config(image=self.frames[self.loc])
             self.after(self.delay, self.next_frame)
 
+
 def center_window(root):
     """
     Center the Tkinter window on the screen.
@@ -66,7 +68,8 @@ def center_window(root):
     position_down = int(screen_height / 2 - window_height / 2)
     root.geometry(f"{window_width}x{window_height}+{position_right}+{position_down}")
 
-def display_isl_gif(phrase):
+
+def display_gif(phrase, language):
     """
     Display an ISL gesture GIF for a given phrase.
 
@@ -78,13 +81,14 @@ def display_isl_gif(phrase):
 
     lbl = ImageLabel(root)
     lbl.pack()
-    lbl.load(f"resources/isl_gifs/{phrase.lower()}.gif")
+    lbl.load(f"resources/{language}_gifs/{phrase.lower()}.gif")
 
     center_window(root)
 
     # Close the window after 5 seconds
     root.after(5000, root.destroy)
     root.mainloop()
+
 
 def display_alphabet_images(text):
     """

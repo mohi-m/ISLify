@@ -1,4 +1,4 @@
 easygui
-speech_recognition
+SpeechRecognition
 pillow
 numpy

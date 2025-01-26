@@ -5,14 +5,14 @@ Utility functions for the ISLify application.
 import json
 import string
 
-def load_supported_phrases():
+def load_supported_phrases(type):
     """
     Load supported phrases from a JSON file.
 
     Returns:
         A list of supported phrases.
     """
-    with open("resources/supported_phrases.json", "r") as file:
+    with open(f"resources/supported_{type}_phrases.json", "r") as file:
         data = json.load(file)
         return data["phrases"]
 

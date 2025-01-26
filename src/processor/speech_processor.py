@@ -3,10 +3,11 @@ This module handles speech recognition functionality for the ISLify application.
 """
 
 import speech_recognition as sr
-from .image_processor import display_isl_gif, display_alphabet_images
+from .image_processor import display_gif, display_alphabet_images
 from utils import load_supported_phrases
 
-class SpeechRecognizer:
+
+class SpeechProcessor:
     """
     A class to handle speech recognition and processing.
     """
@@ -16,9 +17,10 @@ class SpeechRecognizer:
         Initialize the SpeechRecognizer with a recognizer object and supported phrases.
         """
         self.recognizer = sr.Recognizer()
-        self.supported_phrases = load_supported_phrases()
+        self.supported_isl_phrases = load_supported_phrases("isl")
+        self.supported_asl_phrases = load_supported_phrases("asl")
 
-    def process_speech(self, source):
+    def process_speech(self, source, language):
         """
         Process speech input and convert it to ISL gestures or alphabet images.
 
@@ -37,8 +39,10 @@ class SpeechRecognizer:
                 if rec_audio in ["goodbye", "good bye", "bye"]:
                     print("Goodbye, see you next time!")
                     break
-                elif rec_audio in self.supported_phrases:
-                    display_isl_gif(rec_audio)
+                elif language == "isl" and rec_audio in self.supported_isl_phrases:
+                    display_gif(rec_audio, language)
+                elif language == "asl" and rec_audio in self.supported_asl_phrases:
+                    display_gif(rec_audio, language)
                 else:
                     display_alphabet_images(rec_audio)
             except sr.UnknownValueError:
