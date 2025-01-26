@@ -3,8 +3,8 @@ Main entry point for the ISLify application.
 This script initializes the speech recognizer and creates the main GUI.
 """
 
-from processor.speech_processor import SpeechProcessor
 from interface.gui import create_main_gui
+from processor.speech_processor import SpeechProcessor
 
 
 def main():

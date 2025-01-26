@@ -1,11 +1,11 @@
-"""
-Optimized Python file for image and GIF processing in the ISLify application.
-"""
-
-import tkinter as tk
-from PIL import Image, ImageTk
-from itertools import count
+import os
 import string
+import tkinter as tk
+from itertools import count
+
+from PIL import Image, ImageTk
+
+from my_utils import get_resource_dir
 
 
 class ImageLabel(tk.Label):
@@ -81,7 +81,9 @@ def display_gif(phrase, language):
 
     lbl = ImageLabel(root)
     lbl.pack()
-    lbl.load(f"resources/{language}_gifs/{phrase.lower()}.gif")
+
+    gif_path = os.path.join(get_resource_dir(), f"{language}_gifs", f"{phrase.lower()}.gif")
+    lbl.load(gif_path)
 
     center_window(root)
 
@@ -105,11 +107,13 @@ def display_alphabet_images(text):
     lbl = tk.Label(root)
     lbl.pack()
 
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
     def show_image(index):
         if index < len(text):
             char = text[index].lower()
             if char in alphabet_list:
-                image_path = f"resources/letters/{char}.jpg"
+                image_path = os.path.join(get_resource_dir(), "letters", f"{char}.jpg")
                 try:
                     image = Image.open(image_path).resize((500, 500))
                     photo = ImageTk.PhotoImage(image)

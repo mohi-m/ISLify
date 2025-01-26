@@ -3,8 +3,9 @@ This module handles speech recognition functionality for the ISLify application.
 """
 
 import speech_recognition as sr
+
 from .image_processor import display_gif, display_alphabet_images
-from utils import load_supported_phrases
+from  my_utils import load_supported_phrases
 
 
 class SpeechProcessor:
@@ -25,6 +26,7 @@ class SpeechProcessor:
         Process speech input and convert it to ISL gestures or alphabet images.
 
         Args:
+            language: The language to process the speech input for (isl or asl).
             source: The audio source (typically a microphone) to listen from.
         """
         self.calibrate_microphone(source)

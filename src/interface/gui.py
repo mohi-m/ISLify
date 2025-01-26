@@ -1,9 +1,12 @@
 """
 This module handles the graphical user interface for the ISLify application.
 """
+import os
 
-from easygui import buttonbox
 import speech_recognition as sr
+from easygui import buttonbox
+
+from my_utils import get_resource_dir
 
 
 def create_main_gui(speech_processor):
@@ -15,7 +18,7 @@ def create_main_gui(speech_processor):
     """
     with sr.Microphone() as source:
         while True:
-            image = "resources/signlang.png"
+            image = os.path.join(get_resource_dir(), "signlang.png")
             msg = "HEARING IMPAIRMENT ASSISTANT"
             choices = ["Indian Sign Language", "American Sign Language", "Close"]
             reply = buttonbox(msg, image=image, choices=choices)
@@ -23,5 +26,5 @@ def create_main_gui(speech_processor):
                 speech_processor(source, "isl")
             if reply == choices[1]:
                 speech_processor(source, "asl")
-            else:
+            if reply == choices[2]:
                 break

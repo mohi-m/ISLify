@@ -1,22 +1,26 @@
-# ISLify
-**ISLify is an application that serves as an Indian Sign Language (ISL) Interpreter Assistant. It bridges the communication gap between spoken language and Indian Sign Language by converting speech to ISL gestures and alphabets.**
+# SignBridge 
+**SignBridge  is an application that serves as an Indian Sign Language (ISL) and American Sign Language (ASL) Interpreter Assistant. 
+It bridges the communication gap between spoken language and Indian Sign Language by converting speech to ISL gestures and alphabets.**
 
 ## Features
 - Real-time speech recognition
-- Conversion of recognized speech to ISL gestures (GIFs)
-- Display of ISL alphabet images for unrecognized words
+- Conversion of recognized speech to ISL/ASL gestures (GIFs)
+- Display of alphabet images sign for unrecognized words
 - User-friendly graphical interface
 
 ## Project Structure
 ```text
-ISLify/
+SignBridge/
 ├── resources/
 │   ├── isl_gifs/
 │   │   └── [ISL gesture GIF files]
+│   ├── asl_gifs/
+│   │   └── [ASL gesture GIF files]
 │   ├── letters/
 │   │   └── [Alphabet image files]
 │   ├── signlang.png
-│   └── supported_phrases.json
+│   ├── supported_isl_phrases.json
+│   └── supported_asl_phrases.json
 │
 ├── src/
 │   ├── interface/
@@ -27,7 +31,7 @@ ISLify/
 │   │   └── speech_processor.py
 │   │
 │   ├── main.py
-│   └── utils.py
+│   └── my_utils.py
 │
 └── README.md
 
@@ -35,10 +39,10 @@ ISLify/
 
 ## Installation
 1. Clone the repository:
-`git clone https://github.com/yourusername/islify.git`
+`git clone https://github.com/mohi-m/SignBridge.git`
 
 2. Navigate to the project directory:
-`cd islify`
+`cd SignBridge`
 
 3. Install the required dependencies:
 `pip install -r requirements.txt`
@@ -47,7 +51,7 @@ ISLify/
 1. Run the main script to start the application:
 `python main.py`
 
-2. Follow the on-screen instructions to use the speech recognition feature and view the corresponding ISL gestures or alphabet images.
+2. Follow the on-screen instructions to use the speech recognition feature and view the corresponding ISL/ASL gestures or alphabet images.
 
 ## Dependencies
 - speech_recognition
@@ -57,4 +61,4 @@ ISLify/
 - tkinter
 
 ## Contributing
-Contributions to ISLify are welcome! Please feel free to submit a Pull Request.
+Contributions to SignBridge are welcome! Please feel free to submit a Pull Request.
